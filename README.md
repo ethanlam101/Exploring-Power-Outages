@@ -15,8 +15,9 @@ risk.
 Thus, it is important to understand why and how power outages are caused
 to avoid them in the future!
 
-This project will be centered around one question, "What are the most notable
-causes and characteristics of an power outage?"
+This project will be centered around one question,
+
+#### ***"What are the most notable causes and characteristics of an power outage?"***
 
 For these reasons, I will explore power outages using a dataset that describes
 the major outages witnessed in the continental United States during January 2000
@@ -29,6 +30,8 @@ https://engineering.purdue.edu/LASCI/research-data/outages
 In the raw Dataframe, there are 1,534 rows and 57 columns. This translates to
 1,534 reported outages which meet the critiea mentioned earlier and a mix of
 qualitative and quantitative potentionally correlated variables.
+
+Here are the columns we will particuarly focus upon.
 
 |Column                |Description|
 |---                |---        |
