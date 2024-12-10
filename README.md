@@ -1,7 +1,8 @@
 # Exploring the Causes of Power Outages 🔋🔌
-Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
+Made with ❤️ by Ethan Lam (lamethan204@gmail.com)<br />
 
 ---
+<br />
 
 ## Introduction 
 ### Why explore power outages? 🤔💭
@@ -62,6 +63,7 @@ Here are the columns we will particuarly focus upon.
 |`'AREAPCT_URBAN'`                |Percentage of the land area of the U.S. state represented by the land area of the urban areas (in %)|
 
 ---
+<br />
 
 ## Data Cleaning and Exploratory Data Analysis
 
@@ -115,7 +117,7 @@ notice that states with higher population have more reported outages.
 This simple bar chart displays the number of outages per count. We can see that
 severe weather dominates the distribution of causes. Weather and or
 climate may be a strong factor of a cause for a power outage.
-<iframe src="assets/causes_count.html" width="100%" height="600"></iframe>  
+<iframe src="assets/causes_count.html" width="100%" height="600"></iframe><br />
 
 This line chart shows the number of outages per year. We can see a spike in 2011
 which can be explained by the numerous extreme weather events such as Hurricane
@@ -260,10 +262,90 @@ respective cause in that region.
   </table>
 </div>
 
+---
+<br />
 
+## Assessment of Missingness
 
+### NMAR Analysis ❓❓
 
+The missing mechanism, Not Missing At Random, describes the missing mechanism in
+which the missing data is likely missing because of the data itself. For
+example, participants with severe depression are more likely to refuse to
+complete a depression survey.
 
+In our dataset, we see that missing values in `CUSTOMERS.AFFECTED` likely is
+NMAR data because these values are collected by self reporting companies. These
+companies likely did not report the values, hence the missing data. 
 
+Some information we could collect that would make the missingness of
+`CUSTOMERS.AFFECTED` missing at random (dependent on observed data), would be 
+the size of the reporting companies. Larger companies might have stricter 
+reporting policies, while smaller ones may not.
+
+### Missingness Dependency ⁉️
+
+Now let's test whether or not our missingness in `CAUSE.CATEGORY.DETAIL` is
+dependent on other columns. We will test this against the columns
+`CAUSE.CATEGORY` and `U.S._STATE`.
+
+#### Cause Category 
+
+To see if `CAUSE.CATEGORY.DETAIL`'s missingness is dependent on
+`CAUSE.CATEGORY`, we will examine the distribution of when
+`CAUSE.CATEGORY.DETAIL` is missing vs not missing.
+
+**Null Hypothesis:** The distribution of `CAUSE.CATEGORY` is the same when
+`CAUSE.CATEGORY.DETAIL` is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of `CAUSE.CATEGORY` is different when
+`CAUSE.CATEGORY.DETAIL` is missing vs not missing.
+
+**Test Statistic:** Total Variation Distance because we are comaring two
+categorical distributions
+
+**Significane Level:** 0.05
+
+Just from our observed data, we find an observed TVD of `0.411`.
+
+<iframe src="assets/cause_category_detail_missingness.png" width="100%" height="600"></iframe><br />
+
+Shown below is the empirical distribution of our tested TVDs. We see that none 
+of the tested TVDs are greater than our observed TVD. This gives us a p-value 
+of 0.0, thus we can safely reject the null hypothesis in favour of our 
+alternative hypothesis. <br />
+
+The missingness of `CAUSE.CATEGORY.DETAIL` is very likely MAR dependent on `CAUSE.CATEGORY`.
+
+<iframe src="assets/empirical_dist_cause_category_detail.html" width="100%" height="600"></iframe><br />
+
+### 
+
+Next we will test if `CAUSE.CATEGORY`'s missingness is dependent on
+`U.S._STATE`. Just like last problem, we will examine the distributions of
+missingness.
+
+**Null Hypothesis:** The distribution of `CAUSE.CATEGORY` is the same when
+`TOTAL.SALES` is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of `CAUSE.CATEGORY` is different when
+`TOTAL.SALES` is missing vs not missing.
+
+**Test Statistic:** Total Variation Distance because we are comaring two
+categorical distributions
+
+**Significane Level:** 0.05
+
+<iframe src="assets/total_sales_missingness.png" width="100%" height="600"></iframe><br />
+
+From our observed data, we see an observed TVD of `0.26`.
+
+<iframe src="assets/empirical_dist_total_sales.html" width="100%" height="600"></iframe><br />
+
+Shown below is the empirical distribution of our tested TVDs. We see that a good
+amount of tested TVDs are greater than our observed TVD. This gives us a p-value 
+of 0.087, thus we fail to reject the null hypothesis. <br />
+
+The missingness of `TOTAL.SALES` is very likely NOT MAR dependent on `CAUSE.CATEGORY`.
 
 
