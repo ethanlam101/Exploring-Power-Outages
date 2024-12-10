@@ -108,15 +108,18 @@ notice that states with higher population have more reported outages.
 (coincidence or not?)
 <iframe src="assets/power_outages_choropleth.html" width="100%" height="600"></iframe>
 
+
 This simple bar chart displays the number of outages per count. We can see that
 severe weather dominates the distribution of causes. Weather and or
 climate may be a strong factor of a cause for a power outage.
 <iframe src="assets/causes_count.html" width="100%" height="600"></iframe>
 
+
 This line chart shows the number of outages per year. We can see a spike in 2011
 which can be explained by the numerous extreme weather events such as Hurricane
 Irene, the Texas Winter Storm, and a tornado outbreak.
 <iframe src="assets/outages_yearly_count.html" width="100%" height="600"></iframe>
+
 
 ### Bivariate Analysis 📈
 
@@ -127,7 +130,8 @@ First, I expected that the use of lots of electricity shoud have a positive
 relationship with the duration of power outages. (i.e. more electricity sold =
 more electricity used = more severe/longer power outages?) We do see a very weak
 positive correlation here, meaning that these variables may not be as related as we thought.
-<iframe src="duration_vs_sales.html" width="100%" height="600"></iframe>
+<iframe src="assets/duration_vs_sales.html" width="100%" height="600"></iframe>
+
 
 Next, we examine the relationship between the cause of a power outage and its
 duration. We use duration because it can be a measure of severity. (longer
@@ -135,7 +139,8 @@ duration = higher severity). The plot shows that severe weather and fuel supply
 emergency, on average, have higher durations than other causes. This might be
 because weather storms last days to weeks at a time and power plants that supply
 electricity may take long periods of time to repair.
-<iframe src="duration_vs_cause.html" width="100%" height="600"></iframe>
+<iframe src="assets/duration_vs_cause.html" width="100%" height="600"></iframe>
+
 
 ### Interesting Aggregates 📋
 
@@ -144,19 +149,117 @@ power outage. This table below shows a count of power outages for each cause
 category for each climate region. We notice that the Northeast experiences the
 most severe weather, which could correlate to extreme Winter storms.
 Interestingly, we also see that the Northeast experiences the most intentional
-attacks by a large margin.
+attacks by a large margin. Again, nan values mean there were no reports of that
+respective cause in that region.
 
-| CLIMATE.REGION     |   ('Count', 'equipment failure') |   ('Count', 'fuel supply emergency') |   ('Count', 'intentional attack') |   ('Count', 'islanding') |   ('Count', 'public appeal') |   ('Count', 'severe weather') |   ('Count', 'system operability disruption') |
-|:-------------------|---------------------------------:|-------------------------------------:|----------------------------------:|-------------------------:|-----------------------------:|------------------------------:|---------------------------------------------:|
-| Central            |                                7 |                                    4 |                                38 |                        3 |                            2 |                           135 |                                           11 |
-| East North Central |                                3 |                                    5 |                                20 |                        1 |                            2 |                           104 |                                            3 |
-| Northeast          |                                5 |                                   14 |                               135 |                        1 |                            4 |                           176 |                                           15 |
-| Northwest          |                                2 |                                    1 |                                89 |                        5 |                            2 |                            29 |                                            4 |
-| South              |                               10 |                                    7 |                                28 |                        2 |                           42 |                           113 |                                           27 |
-| Southeast          |                                5 |                                  nan |                                 9 |                      nan |                            5 |                           118 |                                           16 |
-| Southwest          |                                5 |                                    2 |                                64 |                        1 |                            1 |                            10 |                                            9 |
-| West               |                               21 |                                   17 |                                31 |                       28 |                            9 |                            70 |                                           41 |
-| West North Central |                                1 |                                    1 |                                 4 |                        5 |                            2 |                             4 |                                          nan |
+<div style="overflow-x:auto; width: 100%;">
+  <table>
+    <thead>
+      <tr>
+        <th>CLIMATE.REGION</th>
+        <th>equipment failure</th>
+        <th>fuel supply emergency</th>
+        <th>intentional attack</th>
+        <th>islanding</th>
+        <th>public appeal</th>
+        <th>severe weather</th>
+        <th>system operability disruption</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Central</td>
+        <td>7</td>
+        <td>4</td>
+        <td>38</td>
+        <td>3</td>
+        <td>2</td>
+        <td>135</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>East North Central</td>
+        <td>3</td>
+        <td>5</td>
+        <td>20</td>
+        <td>1</td>
+        <td>2</td>
+        <td>104</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>Northeast</td>
+        <td>5</td>
+        <td>14</td>
+        <td>135</td>
+        <td>1</td>
+        <td>4</td>
+        <td>176</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <td>Northwest</td>
+        <td>2</td>
+        <td>1</td>
+        <td>89</td>
+        <td>5</td>
+        <td>2</td>
+        <td>29</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>South</td>
+        <td>10</td>
+        <td>7</td>
+        <td>28</td>
+        <td>2</td>
+        <td>42</td>
+        <td>113</td>
+        <td>27</td>
+      </tr>
+      <tr>
+        <td>Southeast</td>
+        <td>5</td>
+        <td>nan</td>
+        <td>9</td>
+        <td>nan</td>
+        <td>5</td>
+        <td>118</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <td>Southwest</td>
+        <td>5</td>
+        <td>2</td>
+        <td>64</td>
+        <td>1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>West</td>
+        <td>21</td>
+        <td>17</td>
+        <td>31</td>
+        <td>28</td>
+        <td>9</td>
+        <td>70</td>
+        <td>41</td>
+      </tr>
+      <tr>
+        <td>West North Central</td>
+        <td>1</td>
+        <td>1</td>
+        <td>4</td>
+        <td>5</td>
+        <td>2</td>
+        <td>4</td>
+        <td>nan</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
 
