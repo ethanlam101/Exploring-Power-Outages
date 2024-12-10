@@ -1,6 +1,8 @@
 # Exploring the Causes of Power Outages 🔋🔌
 Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
+
 ---
+
 ## Introduction 
 ### Why explore power outages? 🤔💭
 Don't you hate it when your power goes out in the middle of a really important
@@ -108,17 +110,17 @@ This density heatmap shows the amount of reported outages in each state. We can
 see that California has the greatest amount of reported outages, but we also
 notice that states with higher population have more reported outages.
 (coincidence or not?)
-<iframe src="assets/power_outages_choropleth.html" width="100%" height="600"></iframe>\
+<iframe src="assets/power_outages_choropleth.html" width="100%" height="600"></iframe>  
 
 This simple bar chart displays the number of outages per count. We can see that
 severe weather dominates the distribution of causes. Weather and or
 climate may be a strong factor of a cause for a power outage.
-<iframe src="assets/causes_count.html" width="100%" height="600"></iframe>\
+<iframe src="assets/causes_count.html" width="100%" height="600"></iframe>  
 
 This line chart shows the number of outages per year. We can see a spike in 2011
 which can be explained by the numerous extreme weather events such as Hurricane
 Irene, the Texas Winter Storm, and a tornado outbreak.
-<iframe src="assets/outages_yearly_count.html" width="100%" height="600"></iframe>\
+<iframe src="assets/outages_yearly_count.html" width="100%" height="600"></iframe>  
 
 ### Bivariate Analysis 📈
 
@@ -129,7 +131,7 @@ First, I expected that the use of lots of electricity shoud have a positive
 relationship with the duration of power outages. (i.e. more electricity sold =
 more electricity used = more severe/longer power outages?) We do see a very weak
 positive correlation here, meaning that these variables may not be as related as we thought.
-<iframe src="assets/duration_vs_sales.html" width="100%" height="600"></iframe>\
+<iframe src="assets/duration_vs_sales.html" width="100%" height="600"></iframe>  
 
 Next, we examine the relationship between the cause of a power outage and its
 duration. We use duration because it can be a measure of severity. (longer
@@ -137,7 +139,7 @@ duration = higher severity). The plot shows that severe weather and fuel supply
 emergency, on average, have higher durations than other causes. This might be
 because weather storms last days to weeks at a time and power plants that supply
 electricity may take long periods of time to repair.
-<iframe src="assets/duration_vs_cause.html" width="100%" height="600"></iframe>\
+<iframe src="assets/duration_vs_cause.html" width="100%" height="600"></iframe>  
 
 ### Interesting Aggregates 📋
 
