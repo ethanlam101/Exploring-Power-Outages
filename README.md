@@ -1,6 +1,6 @@
 # Exploring the Causes of Power Outages 🔋🔌
-Made with ❤️ by Ethan Lam (lamethan204@gmail.com)<br />
-
+Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
+<br />
 ---
 <br />
 
@@ -20,15 +20,20 @@ to avoid them in the future!
 
 This project will be centered around one question,
 
-#### "What are the most notable causes and characteristics of an power outage?"
+**"What are the most notable causes and characteristics of an power outage?"**
 
-For these reasons, I will explore power outages using a dataset that describes
+I will explore power outages using a dataset that describes
 the major outages witnessed in the continental United States during January 2000
 to July 2016. As defined by the Department of Energy, the major outages refer to
 those that impacted atleast 50,000 customers or caused an unplanned firm load
-loss of atleast 300 MW. This data can be found from Purdue University's
-Laboratory for Advancing Sustainable Critical Infrastrcutre, at
+loss of atleast 300 MW. 
+
+This data can be found from Purdue University's Laboratory for Advancing 
+Sustainable Critical Infrastrcutre, at
+
 https://engineering.purdue.edu/LASCI/research-data/outages
+
+---
 
 In the raw Dataframe, there are 1,534 rows and 57 columns. This translates to
 1,534 reported outages which meet the critiea mentioned earlier and a mix of
@@ -289,7 +294,7 @@ Now let's test whether or not our missingness in `CAUSE.CATEGORY.DETAIL` is
 dependent on other columns. We will test this against the columns
 `CAUSE.CATEGORY` and `U.S._STATE`.
 
-#### Cause Category 
+#### <u> Cause Category </u>
 
 To see if `CAUSE.CATEGORY.DETAIL`'s missingness is dependent on
 `CAUSE.CATEGORY`, we will examine the distribution of when
@@ -319,10 +324,10 @@ The missingness of `CAUSE.CATEGORY.DETAIL` is very likely MAR dependent on `CAUS
 
 <iframe src="assets/empirical_dist_cause_category_detail.html" width="100%" height="600"></iframe><br />
 
-### 
+### <u> Total Sales </u>
 
 Next we will test if `CAUSE.CATEGORY`'s missingness is dependent on
-`U.S._STATE`. Just like last problem, we will examine the distributions of
+`TOTAL.SALES`. Just like last problem, we will examine the distributions of
 missingness.
 
 **Null Hypothesis:** The distribution of `CAUSE.CATEGORY` is the same when
@@ -336,11 +341,9 @@ categorical distributions
 
 **Significane Level:** 0.05
 
-<iframe src="assets/total_sales_missingness.png" width="100%" height="600"></iframe><br />
-
 From our observed data, we see an observed TVD of `0.26`.
 
-<iframe src="assets/empirical_dist_total_sales.html" width="100%" height="600"></iframe><br />
+<iframe src="assets/total_sales_missingness.png" width="100%" height="600"></iframe><br />
 
 Shown below is the empirical distribution of our tested TVDs. We see that a good
 amount of tested TVDs are greater than our observed TVD. This gives us a p-value 
@@ -348,4 +351,50 @@ of 0.087, thus we fail to reject the null hypothesis. <br />
 
 The missingness of `TOTAL.SALES` is very likely NOT MAR dependent on `CAUSE.CATEGORY`.
 
+<iframe src="assets/empirical_dist_total_sales.html" width="100%" height="600"></iframe><br />
+
+---
+<br />
+
+## Hypothesis Testing 🧪🔬
+
+From our density heatmap earlier, we noticed a general trend, that is, the more
+populated a state, the more reports of severe outages. Let's test whether or not
+living in a largely populated state will increase your chances experiencing a
+severe outage.
+
+For our tests, we will define largely populated states as 
+`[California, Texas, Florida]`. Our durations will be dervived from the
+`OUTAGE.DURATION` column.
+
+**Null Hypothesis:** On average, the duration of power outages in largely
+populated states is the same as the duration of power outages in every other
+state.
+
+**Alternate Hypothesis:** On average, the duration of power outages in largely
+populated states is greater than duration of power outages in every other
+state.
+
+**Test Statistic:** Difference in means.
+
+**Significance Value:** 0.05
+
+We will be using a permutation test because we are trying to see if these two
+distributions come from the same population. 
+
+From our data, we find an observed value of `-461.15` which means that every
+other state, on average, has a higher duration of power outages.
+
+After computing our permutation tests with 10,000 simulations, our empirical
+distributions of difference is means is shown below. We derive a p-value of
+0.939 which means we greatly fail to reject our null hypothesis.
+
+It seems like lessly populated states tend to have longer power outages!
+
+<iframe src="assets/empirical_dist_diff_means.html" width="100%" height="600"></iframe><br />
+
+---
+<br />
+
+## Framing a Prediction Problem 🧠💡
 
