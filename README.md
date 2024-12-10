@@ -1,4 +1,6 @@
-# Exploring the Causes of Power Outages 🔋🔌
+---
+title: Exploring the Causes of Power Outages 🔋🔌
+---
 Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
 
 # Introduction 
@@ -102,7 +104,7 @@ Here is what a few columns of our dataframe looks like.
 Now that our data is cleaned up, let's explore single variables that may correlate with
 power outages.
 
-<iframe src="assets/folium_map.html" width="100%" height="600"></iframe>
+<iframe src="assets/power_outages_choropleth.html" width="100%" height="600"></iframe>
 
 
 
