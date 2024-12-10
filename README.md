@@ -1,10 +1,8 @@
----
-title: Exploring the Causes of Power Outages 🔋🔌
----
+# Exploring the Causes of Power Outages 🔋🔌
 Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
 
-# Introduction 
-## Why explore power outages? 🤔💭
+## Introduction 
+### Why explore power outages? 🤔💭
 Don't you hate it when your power goes out in the middle of a really important
 task? Just in a matter of seconds, it seems like life has grinded to a halt--no
 lights, no heat, and essentially, no connection to the outside world. 
@@ -61,9 +59,9 @@ Here are the columns we will particuarly focus upon.
 |`'POPDEN_URBAN'`                |Population density of the urban areas (persons per square mile)|
 |`'AREAPCT_URBAN'`                |Percentage of the land area of the U.S. state represented by the land area of the urban areas (in %)|
 
-# Data Cleaning and Exploratory Data Analysis
+## Data Cleaning and Exploratory Data Analysis
 
-## Data Cleaning 🧹🧼
+### Data Cleaning 🧹🧼
 
 1. Let's start by dropping the irrelevant columns and only keeping features we
    are interested in (in other words, columns that have correlation to these
@@ -82,7 +80,7 @@ Here are the columns we will particuarly focus upon.
    should impute these missing values, but remember that methods of imputation
    may lead to skewed or inaccurate results. For now let's replace these values
    with `np.nan`.
-4. The month column are in numbers, lets change these to abbreviated month names
+4. The month column are in numbers, let's change these to abbreviated month names
    for reading ease in future digrams.
 5. Finally, because cities are so different (ranging in population, land area,
    amount of industrial/commercial sector) let's standardize `RES.SALES`,
@@ -99,13 +97,66 @@ Here is what a few columns of our dataframe looks like.
 | Jun     | Minnesota    | severe weather     | Tuesday, June 19, 2012 04:30:00    |   -0.362797 |
 | Jul     | Minnesota    | severe weather     | Saturday, July 18, 2015 02:00:00   |   -0.459947 |
 
-## Univariate Analysis 📊
+### Univariate Analysis 📊
 
 Now that our data is cleaned up, let's explore single variables that may correlate with
 power outages.
 
+This density heatmap shows the amount of reported outages in each state. We can
+see that California has the greatest amount of reported outages, but we also
+notice that states with higher population have more reported outages.
+(coincidence or not?)
 <iframe src="assets/power_outages_choropleth.html" width="100%" height="600"></iframe>
 
+This simple bar chart displays the number of outages per count. We can see that
+severe weather dominates the distribution of causes. Weather and or
+climate may be a strong factor of a cause for a power outage.
+<iframe src="assets/causes_count.html" width="100%" height="600"></iframe>
+
+This line chart shows the number of outages per year. We can see a spike in 2011
+which can be explained by the numerous extreme weather events such as Hurricane
+Irene, the Texas Winter Storm, and a tornado outbreak.
+<iframe src="assets/outages_yearly_count.html" width="100%" height="600"></iframe>
+
+### Bivariate Analysis 📈
+
+It seems like we have variables that correlate with one another, let's explore
+these.
+
+First, I expected that the use of lots of electricity shoud have a positive
+relationship with the duration of power outages. (i.e. more electricity sold =
+more electricity used = more severe/longer power outages?) We do see a very weak
+positive correlation here, meaning that these variables may not be as related as we thought.
+<iframe src="duration_vs_sales.html" width="100%" height="600"></iframe>
+
+Next, we examine the relationship between the cause of a power outage and its
+duration. We use duration because it can be a measure of severity. (longer
+duration = higher severity). The plot shows that severe weather and fuel supply
+emergency, on average, have higher durations than other causes. This might be
+because weather storms last days to weeks at a time and power plants that supply
+electricity may take long periods of time to repair.
+<iframe src="duration_vs_cause.html" width="100%" height="600"></iframe>
+
+### Interesting Aggregates 📋
+
+We know that climate region definitely has some correlation with the causes of a
+power outage. This table below shows a count of power outages for each cause
+category for each climate region. We notice that the Northeast experiences the
+most severe weather, which could correlate to extreme Winter storms.
+Interestingly, we also see that the Northeast experiences the most intentional
+attacks by a large margin.
+
+| CLIMATE.REGION     |   ('Count', 'equipment failure') |   ('Count', 'fuel supply emergency') |   ('Count', 'intentional attack') |   ('Count', 'islanding') |   ('Count', 'public appeal') |   ('Count', 'severe weather') |   ('Count', 'system operability disruption') |
+|:-------------------|---------------------------------:|-------------------------------------:|----------------------------------:|-------------------------:|-----------------------------:|------------------------------:|---------------------------------------------:|
+| Central            |                                7 |                                    4 |                                38 |                        3 |                            2 |                           135 |                                           11 |
+| East North Central |                                3 |                                    5 |                                20 |                        1 |                            2 |                           104 |                                            3 |
+| Northeast          |                                5 |                                   14 |                               135 |                        1 |                            4 |                           176 |                                           15 |
+| Northwest          |                                2 |                                    1 |                                89 |                        5 |                            2 |                            29 |                                            4 |
+| South              |                               10 |                                    7 |                                28 |                        2 |                           42 |                           113 |                                           27 |
+| Southeast          |                                5 |                                  nan |                                 9 |                      nan |                            5 |                           118 |                                           16 |
+| Southwest          |                                5 |                                    2 |                                64 |                        1 |                            1 |                            10 |                                            9 |
+| West               |                               21 |                                   17 |                                31 |                       28 |                            9 |                            70 |                                           41 |
+| West North Central |                                1 |                                    1 |                                 4 |                        5 |                            2 |                             4 |                                          nan |
 
 
 
