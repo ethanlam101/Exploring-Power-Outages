@@ -36,6 +36,7 @@ Sustainable Critical Infrastrcutre, at
 
 ---
 
+<br />
 In the raw Dataframe, there are 1,534 rows and 57 columns. This translates to
 1,534 reported outages which meet the critiea mentioned earlier and a mix of
 qualitative and quantitative potentionally correlated variables.
@@ -434,7 +435,7 @@ perfectly suites our multiclass classification task.
 
 Results are shown below...
 
-<iframe src="assets/baseline_confusion_matrix.PNG" width="100%" height="600"></iframe><br />
+<iframe src="assets/baseline_confusion_matrix.png" width="100%" height="600"></iframe><br />
 
 This model has an average weighted F1 score of `0.53` which is not too good. I
 also checked the weighted precision and recall to see if one was higher than the
