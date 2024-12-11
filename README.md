@@ -1,5 +1,5 @@
 # Exploring the Causes of Power Outages 🔋🔌
-Made with ❤️ by Ethan Lam (lamethan204@gmail.com)
+Made with ❤️ by Ethan Lam <lamethan204@gmail.com>
 <br />
 ---
 <br />
@@ -31,9 +31,11 @@ loss of atleast 300 MW.
 This data can be found from Purdue University's Laboratory for Advancing 
 Sustainable Critical Infrastrcutre, at
 
-https://engineering.purdue.edu/LASCI/research-data/outages
+<https://engineering.purdue.edu/LASCI/research-data/outages>
 
+<br />
 ---
+<br />
 
 In the raw Dataframe, there are 1,534 rows and 57 columns. This translates to
 1,534 reported outages which meet the critiea mentioned earlier and a mix of
@@ -272,6 +274,10 @@ respective cause in that region.
 
 ## Assessment of Missingness
 
+<br />
+---
+<br />
+
 ### NMAR Analysis ❓❓
 
 The missing mechanism, Not Missing At Random, describes the missing mechanism in
@@ -287,6 +293,10 @@ Some information we could collect that would make the missingness of
 `CUSTOMERS.AFFECTED` missing at random (dependent on observed data), would be 
 the size of the reporting companies. Larger companies might have stricter 
 reporting policies, while smaller ones may not.
+
+<br />
+---
+<br />
 
 ### Missingness Dependency ⁉️
 
@@ -389,7 +399,7 @@ After computing our permutation tests with 10,000 simulations, our empirical
 distributions of difference is means is shown below. We derive a p-value of
 0.939 which means we greatly fail to reject our null hypothesis.
 
-It seems like lessly populated states tend to have longer power outages!
+**It is likely that lessly populated states tend to have longer power outages!**
 
 <iframe src="assets/empirical_dist_diff_means.html" width="100%" height="600"></iframe><br />
 
@@ -398,3 +408,46 @@ It seems like lessly populated states tend to have longer power outages!
 
 ## Framing a Prediction Problem 🧠💡
 
+To answer our question, **"What are the most notable causes and characteristics
+of an power outage?"**, let's create a model that will predict `CAUSE.CATEGORY`,
+or in other words, the cause of a power outage. We will use features that are
+highly correlated with the cause, such as `MONTH` and `CLIMATE.REGION`.
+
+Since there are 7 possible causes of a power outage, this model will preform
+multiclass classification. 
+
+We will use the F1-Score metric because false positive and false
+negatives are equally as important. Additionally, because in our data there is
+disparity in the number of instances for each cause, we will use weighted
+averages to prevent underrepresentation. 
+
+## Baseline Model 🦾🤖
+
+My baseline model will use the features; `CLIMATE.REGION` (qualitative nominal),
+`MONTH` (qualitative ordinal) to predict `CAUSE.CATEGORY`. I chose these two 
+features because they are highly correlated with one another when trying to 
+predict a cause of an outage. For example, the North East is likely to 
+experience severe weather (snow storms) in the Winter months. 
+
+To start, there are missing values in both feature columns. We will impute these
+missing values by simply replacing them with the mode (most common instance) of
+each respective feature.
+
+Then, since these features are both qualitative, we one hot encode these
+features to get numeric values that our model will be able to interpret. 
+
+Finally, I chose a decision tree algorithm for the predictions because it
+perfectly suites our multiclass classification task. 
+
+Results are shown below...
+
+<iframe src="assets/baseline_confusion_matrix.html" width="100%" height="600"></iframe><br />
+
+This model has an average weighted F1 score of `0.53` which is not too good. I
+also checked the weighted precision and recall to see if one was higher than the
+other or not. It turns out both weighted precision and recall were on average
+around `0.55` each.
+
+In other words, our baseline model's score indicates that it is slightly better
+than randomly guessing a cause for a power outage, but it still
+misses/misclassifies many of the power outages.
