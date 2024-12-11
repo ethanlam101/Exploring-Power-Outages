@@ -415,6 +415,9 @@ negatives are equally as important. Additionally, because in our data there is
 disparity in the number of instances for each cause, we will use weighted
 averages to prevent underrepresentation. 
 
+---
+<br />
+
 ## Baseline Model 🦾🤖
 
 My baseline model will use the features; `CLIMATE.REGION` (qualitative nominal),
@@ -445,6 +448,9 @@ around `0.55` each.
 In other words, our baseline model's score indicates that it is slightly better
 than randomly guessing a cause for a power outage, but it still
 misses/misclassifies many of the power outages.
+
+---
+<br />
 
 ## Final Model 🤖✔️
 
@@ -493,6 +499,9 @@ weather and intentional attacks, I suspect that my model experienced
 overfitting. It was unable to make new predictions like equipment failure or
 public appeal as shown in the confusion matrix.
 
+---
+<br />
+
 ## Fairness Analysis 📚⚖️
 
 My two groups for the fairness analysis will be:
@@ -526,3 +535,16 @@ We can safely reject the null hypothesis and say that our final model is likely
 unfair. Like I mentioned earlier, I suspect that the unfairness comes from the
 root of the features. These features are bias toward severe weather and
 intentional attack causes.
+
+---
+<br />
+
+# Parting Thoughts 🤗💡
+
+This project definitely seemed like the final boss of all projects. It combines
+essentially everything I know about data science whether it be through simple
+dataframe manipulation to building a complex machine learning model. It was
+really cool to go through the entire data science lifestyle and this project
+gave me a little taste of what it is like to be a data scientist in the field.
+Overall, I really liked this project and will definitely be using this website
+for future references for my new projects!
