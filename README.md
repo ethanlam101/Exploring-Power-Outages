@@ -543,8 +543,8 @@ intentional attack causes.
 
 This project definitely seemed like the final boss of all projects. It combines
 essentially everything I know about data science whether it be through simple
-dataframe manipulation to building a complex machine learning model. It was
-really cool to go through the entire data science lifestyle and this project
-gave me a little taste of what it is like to be a data scientist in the field.
-Overall, I really liked this project and will definitely be using this website
-for future references for my new projects!
+dataframe manipulation to building a complex machine learning models. It was
+really cool to go through the entire data science lifestyle, giving me a little 
+glimpse of what it is like to be a data scientist in the real world. Overall, 
+I really enjoyed this project and will definitely keep this website in mind as 
+a go-to resource for my future projects!
