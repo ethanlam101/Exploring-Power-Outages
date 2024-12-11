@@ -1,5 +1,5 @@
 # Exploring the Causes of Power Outages 🔋🔌
-Made with ❤️ by Ethan Lam <lamethan204@gmail.com>
+Made with ❤️ by Ethan Lam | (<lamethan204@gmail.com>)
 <br />
 ---
 <br />
@@ -445,3 +445,4 @@ around `0.55` each.
 In other words, our baseline model's score indicates that it is slightly better
 than randomly guessing a cause for a power outage, but it still
 misses/misclassifies many of the power outages.
+
