@@ -462,3 +462,30 @@ features: `YEAR`, `U.S._STATE`, `NERC.REGION`, `ANOMALY.LEVEL`, `RES.SALES`,
 | `IND.SALES`     | quantitative nominal | Reflects demand patterns and grid stress.                                                                                                         |
 | `COM.SALES`     | quantitative nominal | Reflects demand patterns and grid stress.                                                                                                         |
 
+For qualitative variables, I imputed missing values with
+`SimpleImputer(strategy='most_frequent')` and one hot encoded these values as 
+well. For quantitative variables, I imputed missing values with 
+`SimpleImputer(strategy='mean')` and transformed the value with
+`StandardScaler()`. 
+
+As for my prediction algorithm, I used `GridSearchCV` to find the best
+hyperparameters for each potential algorithm; DecisionTreeClassifier,
+RandomForestClassifier, and KNeighborsClassifier. 
+
+I found that the RandomForestClassifier algorithm had the best test set
+accuracies on average at `0.65`. The optimal hyperparameters were:
+
+- classifier__bootstrap: False
+- classifier__max_depth: None
+- classifier__min_samples_leaf: 1
+- classifier__min_samples_split: 2
+- classifier__n_estimators: 50
+
+Evaluating this final model, I calculated an average weighted F1 score of
+`0.65`. The average precision and recall was `0.65` and `0.68` respectively. 
+
+<iframe src="assets/final_confusion_matrix.png" width="100%" height="600"></iframe><br />
+
+This model does preform slightly better than the baseline model because of it's
+higher F1 score, however, it did not preform as well as I expected it to.
+
