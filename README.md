@@ -32,10 +32,9 @@ This data can be found from Purdue University's Laboratory for Advancing
 Sustainable Critical Infrastrcutre, at
 
 <https://engineering.purdue.edu/LASCI/research-data/outages>
+<br />
 
-<br />
 ---
-<br />
 
 In the raw Dataframe, there are 1,534 rows and 57 columns. This translates to
 1,534 reported outages which meet the critiea mentioned earlier and a mix of
@@ -274,10 +273,6 @@ respective cause in that region.
 
 ## Assessment of Missingness
 
-<br />
----
-<br />
-
 ### NMAR Analysis ❓❓
 
 The missing mechanism, Not Missing At Random, describes the missing mechanism in
@@ -294,8 +289,6 @@ Some information we could collect that would make the missingness of
 the size of the reporting companies. Larger companies might have stricter 
 reporting policies, while smaller ones may not.
 
-<br />
----
 <br />
 
 ### Missingness Dependency ⁉️
@@ -441,7 +434,7 @@ perfectly suites our multiclass classification task.
 
 Results are shown below...
 
-<iframe src="assets/baseline_confusion_matrix.html" width="100%" height="600"></iframe><br />
+<iframe src="assets/baseline_confusion_matrix.PNG" width="100%" height="600"></iframe><br />
 
 This model has an average weighted F1 score of `0.53` which is not too good. I
 also checked the weighted precision and recall to see if one was higher than the
