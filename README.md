@@ -446,3 +446,19 @@ In other words, our baseline model's score indicates that it is slightly better
 than randomly guessing a cause for a power outage, but it still
 misses/misclassifies many of the power outages.
 
+## Final Model 🤖✔️
+
+First, to increase my model's weighted F1 score, I will add the following
+features: `YEAR`, `U.S._STATE`, `NERC.REGION`, `ANOMALY.LEVEL`, `RES.SALES`,
+`IND.SALES`, and `COM.SALES`.
+
+|               | Variable Type        | Reasoning                                                                                                                                         |
+|:--------------|:---------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `YEAR `         | qualitative ordinal  | Clear correlation between year and cause. We saw earlier that 2011 was more suspect to severe weather                                             |
+| `U.S._STATE`    | qualitative nominal  | Some states are prone to more intentional attacks (e.g. New York)                                                                                 |
+| `NERC.REGION`   | qualitative nominal  | These regions reflect specific energy policies, compliance standards, and regional grid stress factors that may only apply to a respective region |
+| `ANOMALY.LEVEL` | quantitative ordinal | Has a direct relationship with climate and weather patterns that often lead to power disruptions                                                  |
+| `RES.SALES`     | quantiative nominal  | Reflects demand patterns and grid stress.                                                                                                         |
+| `IND.SALES`     | quantitative nominal | Reflects demand patterns and grid stress.                                                                                                         |
+| `COM.SALES`     | quantitative nominal | Reflects demand patterns and grid stress.                                                                                                         |
+
