@@ -487,5 +487,42 @@ Evaluating this final model, I calculated an average weighted F1 score of
 <iframe src="assets/final_confusion_matrix.png" width="100%" height="600"></iframe><br />
 
 This model does preform slightly better than the baseline model because of it's
-higher F1 score, however, it did not preform as well as I expected it to.
+higher F1 score, however, it did not preform as well as I expected it to. Since
+I used variables there were highly correlated to the specific causes like severe
+weather and intentional attacks, I suspect that my model experienced
+overfitting. It was unable to make new predictions like equipment failure or
+public appeal as shown in the confusion matrix.
 
+## Fairness Analysis 📚⚖️
+
+My two groups for the fairness analysis will be:
+- Group 1: Severe weather and intentional attack causes
+- Group 2: All other causes
+
+I chose these groups because I noticed that my model tend to predict group 1
+with a higher precision compared to group 2.
+
+My evaluation metric will be precision because we want to see how accurate the
+model is when it predicts a positive class. 
+
+**Null Hypothesis:** The model is fair. Its precision scores for prediciting
+severe weather and intentional attacks is the same as all other causes.
+
+**Alternate Hypothesis:** This model is not fair. Its precision scores for prediciting
+severe weather and intentional attacks is differemt from other causes.
+
+**Test Statistic:** Difference in precision
+
+**Significance Level:** 0.05
+
+In our test set, we see an observed test statistic of `0.42`.
+
+After running 10,000 simulations under the null hypothesis, we observe a p-value
+of 0.0 as shown below.
+
+<iframe src="assets/empirical_dist_precision_diff" width="100%" height="600"></iframe><br />
+
+We can safely reject the null hypothesis and say that our final model is likely
+unfair. Like I mentioned earlier, I suspect that the unfairness comes from the
+root of the features. These features are bias toward severe weather and
+intentional attack causes.
